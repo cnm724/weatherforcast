@@ -11,22 +11,23 @@
 <body>
     <nav>
         <h1>5 day Weather Forcast</h1>
+        <form id="weatherInput">
+            <input type="text" id="cityName" name="cityName" placeholder="Enter a City" required>
+            <button type="submit" id="searchBtn">Search</button>
+        </form>
     </nav>
-    <form id="weatherInput">
-        <input type="text" id="cityName" name="cityName" placeholder="Enter a City" required>
-        <button type="submit" id="searchBtn" >Search</button>
-    </form>
-    <section class="searchHistory"></section>
-    <section class="todaysWeather">
-        <p>cityName: </p>
-    </section>
-    <section class="cardContainer"></section>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="./Assets/js/searchhistory.js"></script>
-    <script src="./Assets/js/script.js"></script>
+    <span class="searchHistoryContainer">History: </span>
+
+    <main class="row">    
+        <section class="todaysWeather"></section>
+        <section class="cardContainer"></section>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script src="./Assets/js/script.js"></script>
+    </main>
 </body>
 
 </html>

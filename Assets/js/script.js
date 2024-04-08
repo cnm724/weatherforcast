@@ -8,9 +8,49 @@
 
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
-const cityName = "denver";
+// const cityName = getCityWeather(userInput);
 const apiKey = "5cb6e5ef5af190edfbdbd8d3d23a9b63"
+const searchButton = document.getElementById("searchBtn");
+const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
+function getCityWeather() {
+    const userInput = document.getElementById("cityName").value;
+
+    if (!userInput) {
+        alert("Please Enter a City Name");
+        return;
+    }
+
+    localStorage.setItem("userInput", userInput);
+    console.log(userInput);
+    getCoordinates(userInput);
+    searchHistory.push(userInput);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+
+searchButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    getCityWeather();
+    $('.cardContainer').empty();
+    displaySearchHistory();
+})
+
+function displaySearchHistory() {
+
+    const retrieveHistory = document.querySelector(".searchHistoryContainer");
+
+    if (searchHistory.length > 0) {
+        searchHistory.forEach((searchItem, index) => {
+            const searchItemElement = document.createElement("a");
+            searchItemElement.textContent = `${index + 1}. ${searchItem}`;
+            searchItemElement.href = `search-results.html?q=${searchItem}&format=`;
+            retrieveHistory.appendChild(searchItemElement);
+        });
+    } else {
+        retrieveHistory.innerHTML = "<p>No previous searches<p>";
+    }
+}
 
 
 // converts array data temp to Fahrenheit
@@ -36,20 +76,21 @@ function getForcast(lat, lon) {
 
             console.log(selectedData);
 
-            // createscard elements
+            // creates card elements
             for (data of selectedData) {
                 const tempInKelvin = data.main.temp;
                 const tempInFahrenheit = kelvinToFahrenheit(tempInKelvin);
+
                 const articleCard = $("<article>").addClass("card");
-                const dateH3 = $("<h3>").text(dayjs(data.dt * 1000).format("MM/DD/YYYY"));
+                const dateH3 = $("<h3>").text(dayjs(data.dt * 1000).add(1, "day").format("MM/DD/YYYY"));
                 const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
                 const tempP = $("<p>").text("Temp: " + Math.floor(tempInFahrenheit) + " °F");
                 const humidity = $("<p>").text("Humidity: " + data.main.humidity + "%");
                 const windSpeed = $("<p>").text("Wind Speed: " + Math.floor(data.wind.speed) + " mph");
 
-                articleCard.append(dateH3, iconImg, tempP, humidity, windSpeed)
+                articleCard.append(dateH3, iconImg, tempP, humidity, windSpeed);
 
-                $(".cardContainer").append(articleCard)
+                $(".cardContainer").append(articleCard);
             }
         })
         .catch((error) => console.error(error));
@@ -74,3 +115,12 @@ function getCoordinates(city = cityName) {
 }
 
 getCoordinates();
+window.onload(displaySearchHistory());
+// --------------------------------------------------------------------------------------
+
+//grab search history from localstorage
+//display on screen
+//make it clickable to bring back to information
+
+// const searchHistoryEl = localStorage.getItem("searchHistory", JSON.stringify(searchHistory));
+

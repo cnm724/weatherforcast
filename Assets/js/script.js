@@ -84,7 +84,7 @@ function getForcast(lat, lon) {
                     const headerCard = $("<article>").addClass("card");
                     const searchedCityName = $("<p>").text(result.city.name).addClass("searchedCity");
                     const dateH3 = $("<h3>").text(dayjs(data.dt * 1000).format("MM/DD/YYYY"));
-                    // const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
+                    const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
                     const cityTemp = $("<p>").text("Temp: " + Math.floor(tempInFahrenheit) + " °F");
                     const humidity = $("<p>").text("Humidity: " + data.main.humidity + "%");
                     const windSpeed = $("<p>").text("Wind Speed: " + Math.floor(data.wind.speed) + " mph");
@@ -111,7 +111,7 @@ function getForcast(lat, lon) {
 
                     const articleCard = $("<article>").addClass("card");
                     const dateH3 = $("<h3>").text(dayjs(data.dt * 1000).add(1, "day").format("MM/DD/YYYY"));
-                    // const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
+                    const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
                     const cityTemp = $("<p>").text("Temp: " + Math.floor(tempInFahrenheit) + " °F");
                     const humidity = $("<p>").text("Humidity: " + data.main.humidity + "%");
                     const windSpeed = $("<p>").text("Wind Speed: " + Math.floor(data.wind.speed) + " mph");

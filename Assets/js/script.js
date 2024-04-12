@@ -127,7 +127,7 @@ function getForcast(lat, lon) {
 }
 
 function getCoordinates(city = cityName) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`, requestOptions)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`, requestOptions)
         .then((response) => response.json())
         .then((result) => {
             console.log(result)

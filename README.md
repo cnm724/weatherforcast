@@ -16,7 +16,8 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-Joem tutor - help collaborate on fetch
+* Joem tutor - help collaborate on fetch
+* https://stackoverflow.com/questions/67765238/mixed-content-the-page-at-was-loaded-over-https-but-requested-an-insecure-resour
 
 ## License
 

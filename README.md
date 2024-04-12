@@ -16,7 +16,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-Joem tutor - help collaborate on java
+Joem tutor - help collaborate on fetch
 
 ## License
 

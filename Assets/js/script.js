@@ -27,30 +27,38 @@ function getCityWeather() {
     searchHistory.push(userInput);
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
+displaySearchHistory();
 
 searchButton.addEventListener("click", function (event) {
     event.preventDefault();
     event.stopPropagation();
     getCityWeather();
     $('.cardContainer').empty();
-    displaySearchHistory();
 })
 
 function displaySearchHistory() {
-
-    const retrieveHistory = document.querySelector(".searchHistoryContainer");
-
-    if (searchHistory.length > 0) {
-        searchHistory.forEach((searchItem, index) => {
-            const searchItemElement = document.createElement("a");
-            searchItemElement.textContent = `${index + 1}. ${searchItem}`;
-            searchItemElement.href = `search-results.html?q=${searchItem}&format=`;
-            retrieveHistory.appendChild(searchItemElement);
-        });
-    } else {
-        retrieveHistory.innerHTML = "<p>No previous searches<p>";
-    }
-}
+        const searchHistoryContainer = document.querySelector(".searchHistoryContainer");
+      
+        //searches to see if there is a city inputted and will create it as a button
+        if (searchHistory.length > 0) {
+          searchHistory.forEach((city) => {
+            const searchButton = document.createElement("button");
+            searchButton.textContent = `${city}`;
+            searchButton.classList.add("searchHistoryButton");
+      
+            //event listener to re-trigger search
+            searchButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                getCityWeather(city); // Pass city name to search function
+            });
+      
+            searchHistoryContainer.appendChild(searchButton);
+          });
+        } else {
+          return;
+        }
+     }
 
 
 // converts array data temp to Fahrenheit
@@ -69,7 +77,7 @@ function getForcast(lat, lon) {
         .then((result) => {
             console.log(result);
 
-            // filter method
+            // filter method that will only pick a specified index of dt_txt
             const selectedData = result.list.filter((data) => {
                 return data.dt_txt.includes("00:00:00")
             })
@@ -113,14 +121,3 @@ function getCoordinates(city = cityName) {
         })
         .catch((error) => console.error(error));
 }
-
-getCoordinates();
-window.onload(displaySearchHistory());
-// --------------------------------------------------------------------------------------
-
-//grab search history from localstorage
-//display on screen
-//make it clickable to bring back to information
-
-// const searchHistoryEl = localStorage.getItem("searchHistory", JSON.stringify(searchHistory));
-

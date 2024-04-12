@@ -81,7 +81,7 @@ function getForcast(lat, lon) {
 
                 function todaysCard() {
 
-                    const headerCard = $("<article>").addClass("card");
+                    const headerCard = $("<article>").addClass("mainCard");
                     const searchedCityName = $("<p>").text(result.city.name).addClass("searchedCity");
                     const dateH3 = $("<h3>").text(dayjs(data.dt * 1000).format("MM/DD/YYYY"));
                     const iconImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");

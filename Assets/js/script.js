@@ -1,4 +1,4 @@
-const apiKey = "5cb6e5ef5af190edfbdbd8d3d23a9b63"
+const apiKey = "5cb6e5ef5af190edfbdbd8d3d23a9b63";
 const searchButton = document.getElementById("searchBtn");
 const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 

@@ -60,7 +60,8 @@ function kelvinToFahrenheit(kelvin) {
 
 const requestOptions = {
     method: "GET",
-    redirect: "follow"
+    redirect: "follow",
+    referrerPolicy: "unsafe_url" 
 };
 
 function getForcast(lat, lon) {
